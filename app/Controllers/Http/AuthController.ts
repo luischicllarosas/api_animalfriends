@@ -1,7 +1,7 @@
 import User from "App/Models/User";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import Database from "@ioc:Adonis/Lucid/Database";
+// import Database from "@ioc:Adonis/Lucid/Database";
 
 export default class AuthController {
   /**
@@ -38,10 +38,10 @@ export default class AuthController {
   /**
    * Login
    */
-  public async login({ auth, request, response }: HttpContextContract) {
+  public async login({ auth, request }: HttpContextContract) {
     const email = request.input("email");
     const password = request.input("password");
-    const rememberUser = !!request.input("remember_me");
+    // const rememberUser = !!request.input("remember_me");
 
     // await auth.attempt(email, password, rememberUser);
     // // await auth.login(user, rememberUser)
@@ -50,11 +50,20 @@ export default class AuthController {
     return token.toJSON();
   }
   /**
+   * user
+   */
+  public user({request}) {
+    console.log("Estan llamando a user...");
+    // console.log(request.requestBody);
+    
+    return request.requestBody;
+  }
+  /**
    * Logout
    */
-  public async logout({ auth, request }) {
-    return auth;
-    // await auth.logout();
+  public async logout({ auth }) {
+    // return auth;
+    await auth.logout();
     // await Database.from("api_tokens").where("id", tokenId).delete();
   }
 }
