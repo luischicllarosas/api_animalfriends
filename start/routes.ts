@@ -21,9 +21,8 @@
 import Route from "@ioc:Adonis/Core/Route";
 import HealthCheck from "@ioc:Adonis/Core/HealthCheck";
 
-// Route.resource("users", "UsersController").apiOnly();
+// Auth
 Route.group(() => {
-  // Auth
   Route.group(() => {
     Route.post("register", "AuthController.register");
     Route.post("login", "AuthController.login");
@@ -32,18 +31,18 @@ Route.group(() => {
   }).prefix("auth");
 }).prefix("api/");
 
-// Dashboard
-Route.get("dashboard", async ({ auth }) => {
-  await auth.authenticate(); //  👈 All you need to go
-  const user = await auth.authenticate();
-  return `Hello user! Your email address is ${user.email}`;
-});
+// // Dashboard
+// Route.get("dashboard", async ({ auth }) => {
+//   await auth.authenticate(); //  👈 All you need to go
+//   const user = await auth.authenticate();
+//   return `Hello user! Your email address is ${user.email}`;
+// });
 // Verify connection :
 Route.get("health", async ({ response }) => {
   const report = await HealthCheck.getReport();
 
   return report.healthy ? response.ok(report) : response.badRequest(report);
 });
-Route.post("params", async ({ request }) => {
-  // console.log(request);
-});
+// Route.post("params", async ({ request }) => {
+//   // console.log(request);
+// });
