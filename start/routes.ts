@@ -28,6 +28,8 @@ Route.group(() => {
     Route.post("login", "AuthController.login");
     Route.post("logout", "AuthController.logout");
     Route.get("user", "AuthController.user");
+    //
+    Route.get("imagekit", "AuthController.imagekit");
   }).prefix("auth");
 }).prefix("api/");
 
@@ -43,6 +45,6 @@ Route.get("health", async ({ response }) => {
 
   return report.healthy ? response.ok(report) : response.badRequest(report);
 });
-// Route.post("params", async ({ request }) => {
-//   // console.log(request);
-// });
+Route.get("/", async () => {
+  return { AdonisJS: "Bienvenido al api de AdonisjS" };
+});

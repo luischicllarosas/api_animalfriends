@@ -21,6 +21,7 @@
     "@adonisjs/fold": "^6.4.0",
     "@adonisjs/lucid": "^8.3.1",
     "@adonisjs/session": "^1.0.29",
+    "imagekit": "^3.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "phc-argon2": "^1.0.10",
